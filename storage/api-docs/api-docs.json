@@ -1,0 +1,47 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "თიქეთ სისტემის პროგრამის API-ს დოკუმენტაცია",
+        "version": "0.1"
+    },
+    "paths": {
+        "/ticket_system_api/public/api/login": {
+            "post": {
+                "tags": [
+                    "ავტორიზაციის მეთოდი"
+                ],
+                "operationId": "eeb3a302203e999ebd8dd98aba6516d4",
+                "requestBody": {
+                    "description": "მომხმარებელი ავტორიზაციას გაივლის იმეილით და პაროლით",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "email",
+                                    "password"
+                                ],
+                                "properties": {
+                                    "email": {
+                                        "type": "string",
+                                        "format": "email"
+                                    },
+                                    "password": {
+                                        "type": "string",
+                                        "format": "password"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "ავტორიზაციის API"
+                    }
+                }
+            }
+        }
+    }
+}
