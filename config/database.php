@@ -83,7 +83,7 @@ return [
             'url' => env('DATABASE_URL'),
             'host' => env('DB_HOST', 'SQLDEV03'),
             'port' => env('DB_PORT', ''),
-            'database' => env('DB_DATABASE', 'ticket_system_api'),
+            'database' => env('DB_DATABASE', 'rda_ticket'),
             'username' => env('DB_USERNAME', ''),
             'password' => env('DB_PASSWORD', ''),
             'charset' => 'utf8',

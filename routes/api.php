@@ -23,3 +23,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 */
 
 Route::post("/login", [MainController::class, "Login"]); // ავტორიზაციის გვერდის მარშუტი
+
+Route::post("/check_user", [MainController::class, "Check_User"])->middleware("auth:api"); // იუზერის გადამოწმების მარშუტი

@@ -42,6 +42,19 @@
                     }
                 }
             }
+        },
+        "/ticket_system_api/public/api/check_user": {
+            "post": {
+                "tags": [
+                    "იუზერის გადამოწმების მეთოდი"
+                ],
+                "operationId": "fb906e63e1559ca99d4b234aef7b7df3",
+                "responses": {
+                    "200": {
+                        "description": "იუზერის გადამოწმების API"
+                    }
+                }
+            }
         }
     }
 }

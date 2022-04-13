@@ -60,4 +60,27 @@ class MainController extends Controller
             ], 422);
         }
     }
+
+    /**
+     * @OA\Post(
+     *     path="/ticket_system_api/public/api/check_user",
+     *     tags={"იუზერის გადამოწმების მეთოდი"},
+     * 
+     *     @OA\Response(
+     *          response = "200",
+     *          description = "იუზერის გადამოწმების API"
+     *     )
+     *  )
+     */
+    public function Check_User() {
+        if(Auth::check() && Auth::guard("api")->check()) {
+            return response()->json([
+                "status" => true
+            ], 200);
+        }else {
+            return response()->json([
+                "status" => false
+            ], 422);
+        }
+    }
 }
