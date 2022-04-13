@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Roles;
 use Auth;
 
 class MainController extends Controller
@@ -75,7 +76,8 @@ class MainController extends Controller
     public function Check_User() {
         if(Auth::check() && Auth::guard("api")->check()) {
             return response()->json([
-                "status" => true
+                "status" => true,
+                "role" => Roles::select("name")->where("user_id", Auth::user()->id)->first()
             ], 200);
         }else {
             return response()->json([
