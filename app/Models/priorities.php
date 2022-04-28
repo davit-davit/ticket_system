@@ -5,15 +5,15 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Roles extends Model
+class priorities extends Model
 {
     use HasFactory;
 
-    protected $table = "roles";
+    protected $table = "priorities";
 
     protected $fillable = [ "name" ];
 
-    protected $primarykey = true;
+    protected $primarykey = "id";
 
     public $timestamps = true;
 

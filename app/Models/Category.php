@@ -5,15 +5,15 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Roles extends Model
+class Category extends Model
 {
     use HasFactory;
 
-    protected $table = "roles";
+    protected $table = "categories";
 
-    protected $fillable = [ "name" ];
+    protected $fillable = [ "category_name" ];
 
-    protected $primarykey = true;
+    protected $primarykey = "id";
 
     public $timestamps = true;
 

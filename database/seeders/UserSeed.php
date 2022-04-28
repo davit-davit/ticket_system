@@ -19,6 +19,7 @@ class UserSeed extends Seeder
         User::create([
             "name" => "Giorgi Katsarava",
             "email" => "giorgi.katsarava@rda.gov.ge",
+            "role" => 1,
             "password" => Hash::make(1234)
         ]);
     }

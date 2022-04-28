@@ -5,15 +5,17 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Roles extends Model
+class ResetPass extends Model
 {
     use HasFactory;
 
-    protected $table = "roles";
+    protected $table = "reset_password";
+    
+    protected $fillable = [
+        "random_string", "email"
+    ];
 
-    protected $fillable = [ "name" ];
-
-    protected $primarykey = true;
+    protected $primarykey = "id";
 
     public $timestamps = true;
 

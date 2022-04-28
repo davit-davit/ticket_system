@@ -5,17 +5,18 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Roles extends Model
+class Projects extends Model
 {
     use HasFactory;
 
-    protected $table = "roles";
+    protected $table = "projects";
 
     protected $fillable = [ "name" ];
 
-    protected $primarykey = true;
+    protected $primarykey = "id";
 
     public $timestamps = true;
+
 
     public function getCreatedAtAttribute($value) {
         return $this->asDateTime($value)->setTimezone('Asia/Tbilisi')->format("Y-m-d - H:i:s");

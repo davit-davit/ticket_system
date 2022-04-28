@@ -8,7 +8,7 @@
         "/ticket_system_api/public/api/login": {
             "post": {
                 "tags": [
-                    "ავტორიზაციის მეთოდი"
+                    "ავტორიზაციის API"
                 ],
                 "operationId": "eeb3a302203e999ebd8dd98aba6516d4",
                 "requestBody": {
@@ -46,12 +46,1072 @@
         "/ticket_system_api/public/api/check_user": {
             "post": {
                 "tags": [
-                    "იუზერის გადამოწმების მეთოდი"
+                    "იუზერის გადამოწმების API"
                 ],
                 "operationId": "fb906e63e1559ca99d4b234aef7b7df3",
                 "responses": {
                     "200": {
                         "description": "იუზერის გადამოწმების API"
+                    }
+                }
+            }
+        },
+        "/ticket_system_api/public/api/reset/send_reset": {
+            "post": {
+                "tags": [
+                    "პაროლის აღდგენი API"
+                ],
+                "operationId": "60bda713770ef8f574b2bb9d27fc2977",
+                "responses": {
+                    "200": {
+                        "description": "მოცემული მარშუტის საშუალებით ხდება კოდის გენერირება, რომელიც გაიგზავნება იუზერის მიერ შეყვანილ იმეილზე, რომელსაც სურს პაროლის აღდგენა"
+                    }
+                }
+            }
+        },
+        "/ticket_system_api/public/api/reset/password_reset": {
+            "post": {
+                "tags": [
+                    "პაროლის აღდგენი API"
+                ],
+                "operationId": "7d2afeb44e6049323465b3bb9aea2e5e",
+                "responses": {
+                    "200": {
+                        "description": "მოცემული მარშუტის საშუალებით უკვე ხდება პაროლის აღდგენა იმეილზე გაგზავნილი კოდის საშუალებით და ხდება ახალი პაროლის შეყვანა"
+                    }
+                }
+            }
+        },
+        "/ticket_system_api/public/api/role/roles": {
+            "get": {
+                "tags": [
+                    "როლების API"
+                ],
+                "operationId": "28a17eb57821a4a14c84e914ba320fb6",
+                "responses": {
+                    "200": {
+                        "description": "როლების გენერაციის API"
+                    }
+                }
+            }
+        },
+        "/ticket_system_api/public/api/role/delete_role/{id}": {
+            "delete": {
+                "tags": [
+                    "როლების API"
+                ],
+                "operationId": "e81c5eb6d361f0ecf8680e54c0e22672",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "როლის აიდი",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "როლების წაშლის API"
+                    }
+                }
+            }
+        },
+        "/ticket_system_api/public/api/role/edit_role/{id}": {
+            "put": {
+                "tags": [
+                    "როლების API"
+                ],
+                "operationId": "bc88f30303f42440c55c46c35357422f",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "როლის აიდი",
+                        "required": true
+                    }
+                ],
+                "requestBody": {
+                    "description": "მარშუტზე გაიგზავნება ფორმიდან შეყვანილი ახალი როლის დასახელება",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "name"
+                                ],
+                                "properties": {
+                                    "name": {
+                                        "type": "string",
+                                        "format": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "როლის რედაქტირების API"
+                    }
+                }
+            }
+        },
+        "/ticket_system_api/public/api/category/add_category": {
+            "post": {
+                "tags": [
+                    "კატეგორიების API"
+                ],
+                "operationId": "0cf14b2593e00e546b777a0482f4a1e0",
+                "requestBody": {
+                    "description": "კატეგორიის დამატების API. ფორმაში შევა მხოლოდ კატეგორიის დასახელება",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "category_name"
+                                ],
+                                "properties": {
+                                    "category_name": {
+                                        "type": "string",
+                                        "format": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "მოცემული API-ს საშუალებით მოხდება კატეგორიის დამატება"
+                    }
+                }
+            }
+        },
+        "/ticket_system_api/public/api/category/delete_category/{id}": {
+            "delete": {
+                "tags": [
+                    "კატეგორიების API"
+                ],
+                "operationId": "a6ed15029cd75f36b2de2d763928f23c",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "კატეგორიის აიდი",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "მოცემული მარშუტის საშუალებით ხდება კატეგორიის წაშლა"
+                    }
+                }
+            }
+        },
+        "/ticket_system_api/public/api/category/list": {
+            "get": {
+                "tags": [
+                    "კატეგორიების API"
+                ],
+                "operationId": "a556a7b632748685472eb013e5481f38",
+                "responses": {
+                    "200": {
+                        "description": "კატეგორიების სიის API"
+                    }
+                }
+            }
+        },
+        "/ticket_system_api/public/api/category/edit_category/{id}": {
+            "put": {
+                "tags": [
+                    "კატეგორიების API"
+                ],
+                "operationId": "7639ebe0ed26e7f6b36583db1f636995",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "კატეგორიის აიდი",
+                        "required": true
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "category_name"
+                                ],
+                                "properties": {
+                                    "category_name": {
+                                        "type": "string",
+                                        "format": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "მოცემული მარშუტის საშუალებით ხდება კატეგორიის განახლება/რედაქტირება"
+                    }
+                }
+            }
+        },
+        "/ticket_system_api/public/api/permission/delete_permission/{id}": {
+            "delete": {
+                "tags": [
+                    "პერმიშენების API"
+                ],
+                "operationId": "e232665a901a2ffa453e35e50f050d7c",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "პერმიშენის აიდი",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "მოცემული მარშუტის საშუალებით ხდება პერმიშენის წაშლა"
+                    }
+                }
+            }
+        },
+        "/ticket_system_api/public/api/permission/add_permission": {
+            "post": {
+                "tags": [
+                    "პერმიშენების API"
+                ],
+                "operationId": "27f8c7533c2d0fa7fb37443f0247446d",
+                "requestBody": {
+                    "description": "მარშუტზე გაიგზავნება ფორმიდან შეყვანილი პერმიშენის სახელი, სათაური ქართულად და როლის აიდი",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "name",
+                                    "title",
+                                    "role_id"
+                                ],
+                                "properties": {
+                                    "name": {
+                                        "type": "string",
+                                        "format": "string"
+                                    },
+                                    "title": {
+                                        "type": "string",
+                                        "format": "string"
+                                    },
+                                    "role_id": {
+                                        "type": "number",
+                                        "format": "number"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "პერმიშენების დამატების API"
+                    }
+                }
+            }
+        },
+        "/ticket_system_api/public/api/permission/edit_permission/{id}": {
+            "put": {
+                "tags": [
+                    "პერმიშენების API"
+                ],
+                "operationId": "470d59e03f65fb296a721ce7efe8e229",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "პერმიშენის აიდი",
+                        "required": true
+                    }
+                ],
+                "requestBody": {
+                    "description": "მარშუტზე გაიგზავნება ფორმიდან შეყვანილი პერმიშენის სახელი, სათაური ქართულად და როლის აიდი",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "name",
+                                    "title",
+                                    "role_id"
+                                ],
+                                "properties": {
+                                    "name": {
+                                        "type": "string",
+                                        "format": "string"
+                                    },
+                                    "title": {
+                                        "type": "string",
+                                        "format": "string"
+                                    },
+                                    "role_id": {
+                                        "type": "number",
+                                        "format": "number"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "პერმიშენის რედაქტირების API"
+                    }
+                }
+            }
+        },
+        "/ticket_system_api/public/api/priority/add": {
+            "post": {
+                "tags": [
+                    "პრიორიტეტების API"
+                ],
+                "operationId": "4c8a47d9f293d31cdcd2d50757b33a86",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "name"
+                                ],
+                                "properties": {
+                                    "name": {
+                                        "type": "string",
+                                        "format": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "პრიორიტეტის დამატების API"
+                    }
+                }
+            }
+        },
+        "/ticket_system_api/public/api/priority/delete/{id}": {
+            "delete": {
+                "tags": [
+                    "პრიორიტეტების API"
+                ],
+                "operationId": "d6b122013b9d259d841570d945aab9ac",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "პრიორიტეტის აიდი",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "პრიორიტეტის წაშლის API"
+                    }
+                }
+            }
+        },
+        "/ticket_system_api/public/api/priority/edit/{id}": {
+            "put": {
+                "tags": [
+                    "პრიორიტეტების API"
+                ],
+                "operationId": "7bc861d086c4eb1d4e88e36377d30aa5",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "პრიორიტეტის აიდი",
+                        "required": true
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "name"
+                                ],
+                                "properties": {
+                                    "name": {
+                                        "type": "string",
+                                        "format": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "პრიორიტეტის რედაქტირების API"
+                    }
+                }
+            }
+        },
+        "/ticket_system_api/public/api/priority/list": {
+            "get": {
+                "tags": [
+                    "პრიორიტეტების API"
+                ],
+                "operationId": "124ce2abfa669d393cdd7046133cc4d9",
+                "responses": {
+                    "200": {
+                        "description": "პრიორიტეტების სიის API"
+                    }
+                }
+            }
+        },
+        "/ticket_system_api/public/api/priority/full_list": {
+            "get": {
+                "tags": [
+                    "პრიორიტეტების API"
+                ],
+                "operationId": "f21c6cd816751e2c7599ea766f6481c0",
+                "responses": {
+                    "200": {
+                        "description": "პრიორიტეტების სიის API (without pagination)"
+                    }
+                }
+            }
+        },
+        "/ticket_system_api/public/api/priority/get_by_id/{id}": {
+            "get": {
+                "tags": [
+                    "პრიორიტეტების API"
+                ],
+                "operationId": "a3f020900df747d95790788ae5a63cc6",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "პრიორიტეტის აიდი",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "კონკრეტული პრიორიტეტის წამოღების API"
+                    }
+                }
+            }
+        },
+        "/ticket_system_api/public/api/case/add": {
+            "post": {
+                "tags": [
+                    "საქმეების API"
+                ],
+                "operationId": "97ad334e7f15127f43e077fa2f8d20db",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "name"
+                                ],
+                                "properties": {
+                                    "name": {
+                                        "type": "string",
+                                        "format": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "საქმის დამატების API"
+                    }
+                }
+            }
+        },
+        "/ticket_system_api/public/api/case/delete/{id}": {
+            "delete": {
+                "tags": [
+                    "საქმეების API"
+                ],
+                "operationId": "3a7f6c1bc4f523e2a924448a936a2718",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "საქმის აიდი",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "საქმის წაშლის API"
+                    }
+                }
+            }
+        },
+        "/ticket_system_api/public/api/case/edit/{id}": {
+            "put": {
+                "tags": [
+                    "საქმეების API"
+                ],
+                "operationId": "ae4a6ab770e7de310963f4ee1e3faf1d",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "საქმის აიდი",
+                        "required": true
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "name"
+                                ],
+                                "properties": {
+                                    "name": {
+                                        "type": "string",
+                                        "format": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "საქმეების რედაქტირების API"
+                    }
+                }
+            }
+        },
+        "/ticket_system_api/public/api/case/list": {
+            "get": {
+                "tags": [
+                    "საქმეების API"
+                ],
+                "operationId": "69e23c1d1efb9c01c879b4c1e4839529",
+                "responses": {
+                    "200": {
+                        "description": "საქმეების სიის API"
+                    }
+                }
+            }
+        },
+        "/ticket_system_api/public/api/case/get_by_id/{id}": {
+            "get": {
+                "tags": [
+                    "საქმეების API"
+                ],
+                "operationId": "13a53ebd0a24d73ffb1861d8cb8fdd41",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "საქმის აიდი",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "კონკრეტული საქმის წამოღების API"
+                    }
+                }
+            }
+        },
+        "/ticket_system_api/public/api/project/add": {
+            "post": {
+                "tags": [
+                    "პროექტების API"
+                ],
+                "operationId": "3409777462ea03a3a0e87828b5c2ef53",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "name"
+                                ],
+                                "properties": {
+                                    "name": {
+                                        "type": "string",
+                                        "format": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "პროექტის დამატების API"
+                    }
+                }
+            }
+        },
+        "/ticket_system_api/public/api/project/delete/{id}": {
+            "delete": {
+                "tags": [
+                    "პროექტების API"
+                ],
+                "operationId": "38ee0a72249a078de32dd460839b28e1",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "პროექტის აიდი",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "პროექტის წაშლის API"
+                    }
+                }
+            }
+        },
+        "/ticket_system_api/public/api/project/list": {
+            "get": {
+                "tags": [
+                    "პროექტების API"
+                ],
+                "operationId": "eedd1c1348847ab3bcaf155c7857e343",
+                "responses": {
+                    "200": {
+                        "description": "პროექტების სიის API"
+                    }
+                }
+            }
+        },
+        "/ticket_system_api/public/api/project/full_list": {
+            "get": {
+                "tags": [
+                    "პროექტების API"
+                ],
+                "operationId": "99d69508559b6d43453584efac1e7f9e",
+                "responses": {
+                    "200": {
+                        "description": "პროექტების სიის API (without pagination)"
+                    }
+                }
+            }
+        },
+        "/ticket_system_api/public/api/project/get_by_id/{id}": {
+            "get": {
+                "tags": [
+                    "პროექტების API"
+                ],
+                "operationId": "bd73e4bf13ecaea22101724adfe16ad5",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "პროექტის აიდი",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "კონკრეტული პროექტის API"
+                    }
+                }
+            }
+        },
+        "/ticket_system_api/public/api/project/edit/{id}": {
+            "put": {
+                "tags": [
+                    "პროექტების API"
+                ],
+                "operationId": "45bb1d58be2c9450fbe3af9616ff931f",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "პროექტის აიდი",
+                        "required": true
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "name"
+                                ],
+                                "properties": {
+                                    "name": {
+                                        "type": "string",
+                                        "format": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "პროექტების რედაქტირების API"
+                    }
+                }
+            }
+        },
+        "/ticket_system_api/public/api/task/list": {
+            "get": {
+                "tags": [
+                    "დავალებების API"
+                ],
+                "operationId": "6e6d9303cb5bf7fc7a099416447a78a2",
+                "responses": {
+                    "200": {
+                        "description": "დავალებების გენერაციის API"
+                    }
+                }
+            }
+        },
+        "/ticket_system_api/public/api/task/delete/{id}": {
+            "delete": {
+                "tags": [
+                    "დავალებების API"
+                ],
+                "operationId": "af732853ba53759f27332f15fb8d7c3a",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "დავალების აიდი",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "დავალების წაშლის API"
+                    }
+                }
+            }
+        },
+        "/ticket_system_api/public/api/task/add": {
+            "post": {
+                "tags": [
+                    "დავალებების API"
+                ],
+                "operationId": "f0809e62ae24258d19907178b8ead538",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "name",
+                                    "case",
+                                    "project_name",
+                                    "description",
+                                    "files",
+                                    "status"
+                                ],
+                                "properties": {
+                                    "name": {
+                                        "type": "string",
+                                        "format": "string"
+                                    },
+                                    "case": {
+                                        "type": "string",
+                                        "format": "string"
+                                    },
+                                    "project_name": {
+                                        "type": "string",
+                                        "format": "string"
+                                    },
+                                    "description": {
+                                        "type": "string",
+                                        "format": "string"
+                                    },
+                                    "files": {
+                                        "type": "string",
+                                        "format": "string"
+                                    },
+                                    "status": {
+                                        "type": "number",
+                                        "format": "number"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "დავალებების დამატების API"
+                    }
+                }
+            }
+        },
+        "/ticket_system_api/public/api/task/edit/{id}": {
+            "put": {
+                "tags": [
+                    "დავალებების API"
+                ],
+                "operationId": "150ccd6c48529cddfdb3d07b47e957fb",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "name",
+                                    "case",
+                                    "project_name",
+                                    "description",
+                                    "files",
+                                    "status"
+                                ],
+                                "properties": {
+                                    "name": {
+                                        "type": "string",
+                                        "format": "string"
+                                    },
+                                    "case": {
+                                        "type": "string",
+                                        "format": "string"
+                                    },
+                                    "project_name": {
+                                        "type": "string",
+                                        "format": "string"
+                                    },
+                                    "description": {
+                                        "type": "string",
+                                        "format": "string"
+                                    },
+                                    "files": {
+                                        "type": "string",
+                                        "format": "string"
+                                    },
+                                    "status": {
+                                        "type": "number",
+                                        "format": "number"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "დავალებების რედაქტირების API"
+                    }
+                }
+            }
+        },
+        "/ticket_system_api/public/api/task/get_by_id/{id}": {
+            "get": {
+                "tags": [
+                    "დავალებების API"
+                ],
+                "operationId": "ea1c581c2f269e879c2ac802c2f148a8",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "დავალების აიდი",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "კონკრეტული დავალების API"
+                    }
+                }
+            }
+        },
+        "/ticket_system_api/public/api/status/get_by_owner/{id}": {
+            "get": {
+                "tags": [
+                    "დავალებების API"
+                ],
+                "operationId": "4cd83f02599a65005543cc28385db456",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "იუზერის აიდი, ვისზეც არის დავალება მიმაგრებული",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "დავალების წამოღების API იუზერის მიხედვით ვინც ფლობს დავალებას"
+                    }
+                }
+            }
+        },
+        "/ticket_system_api/public/api/status/delete/{id}": {
+            "delete": {
+                "tags": [
+                    "სტატუსების API"
+                ],
+                "operationId": "bedbce6f2079b36f38d35eaa58ff4532",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "სტატუსის აიდი",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "სტატუსის წაშლის API"
+                    }
+                }
+            }
+        },
+        "/ticket_system_api/public/api/status/add": {
+            "post": {
+                "tags": [
+                    "სტატუსების API"
+                ],
+                "operationId": "64e3d4a60c9b49578a5ee404f1d3e4e6",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "name"
+                                ],
+                                "properties": {
+                                    "name": {
+                                        "type": "string",
+                                        "format": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "სტატუსის დამატების API"
+                    }
+                }
+            }
+        },
+        "/ticket_system_api/public/api/status/edit/{id}": {
+            "put": {
+                "tags": [
+                    "სტატუსების API"
+                ],
+                "operationId": "7d6d52cfeb7f6700b70ea7998fdd2ddb",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "სტატუსის აიდი",
+                        "required": true
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "name"
+                                ],
+                                "properties": {
+                                    "name": {
+                                        "type": "string",
+                                        "format": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "სტატუსის რედაქტირების API"
+                    }
+                }
+            }
+        },
+        "/ticket_system_api/public/api/status/list": {
+            "get": {
+                "tags": [
+                    "სტატუსების API"
+                ],
+                "operationId": "2a8871073836d74d0f5511268ba11806",
+                "responses": {
+                    "200": {
+                        "description": "სტატუსების წამოღების API"
+                    }
+                }
+            }
+        },
+        "/ticket_system_api/public/api/status/get_by_status/{id}": {
+            "get": {
+                "tags": [
+                    "დავალებების API"
+                ],
+                "operationId": "8462a98ef18b84d42f1f94c471a5bfe7",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "სტატუსის აიდი",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "დავალების წამოღების API სტატუსის მიხედვით"
+                    }
+                }
+            }
+        },
+        "/ticket_system_api/public/api/add_user": {
+            "post": {
+                "tags": [
+                    "იუზერების API"
+                ],
+                "operationId": "561dec691fdad22069bcf47a67caaac4",
+                "responses": {
+                    "200": {
+                        "description": "მომხმარებლების ატვირთვის API"
                     }
                 }
             }

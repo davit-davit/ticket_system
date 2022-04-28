@@ -4,16 +4,20 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
+use App\Models\Tasks;
 
-class Roles extends Model
+class Status extends Model
 {
-    use HasFactory;
+    use HasFactory, SoftDeletes;
 
-    protected $table = "roles";
+    protected $table = "statuses";
 
     protected $fillable = [ "name" ];
 
-    protected $primarykey = true;
+    protected $dates = [ "deleted_at" ];
+
+    protected $primarykey = "id";
 
     public $timestamps = true;
 
@@ -22,6 +26,10 @@ class Roles extends Model
     }
 
     public function getUpdatedAtAttribute($value) {
+        return $this->asDateTime($value)->setTimezone('Asia/Tbilisi')->format("Y-m-d - H:i:s");
+    }
+
+    public function getDeletedAtAttribute($value) {
         return $this->asDateTime($value)->setTimezone('Asia/Tbilisi')->format("Y-m-d - H:i:s");
     }
 }
